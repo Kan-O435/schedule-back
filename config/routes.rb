@@ -9,4 +9,5 @@ Rails.application.routes.draw do
   # root "posts#index"
   resources :users do
     resources :plans, only: [:index, :show, :create, :update, :destroy]
+  end
 end
