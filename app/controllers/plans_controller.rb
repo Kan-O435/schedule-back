@@ -1,4 +1,4 @@
-class PlanController < ApplicationController
+class PlansController < ApplicationController
     before_action :set_user
     before_action :set_plan, only: [:show, :update, :destroy]
 
