@@ -1,4 +1,4 @@
-class UserController < ApplicationController
+class UsersController < ApplicationController
     def show
         @user=User.find(params[:id])
         render json:@user
@@ -9,8 +9,13 @@ class UserController < ApplicationController
         if @user.save
             render json:@user,status: :created
         else
-            render json:{errors:@user.errors.full_message}, status: :unprocessable_entity#ステータスコード422
+            render json:{errors:@user.errors.full_messages}, status: :unprocessable_entity#ステータスコード422
         end
     end
-    #より強固なprivateセクションっていうのがあるらしい,なんかセキュリティ的に必ず書いたほうがいいらしいから後で
+
+    private
+    def user_params
+        params.require(:user).permit(:name, :mail, :password, :password_confirmation)
+    end
+    
 end
