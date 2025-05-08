@@ -6,7 +6,7 @@ application up and running.
 Things you may want to cover:
 
 * Ruby version
-
+ruby 3.2.3 (2024-01-18 revision 52bb2ac0a6) [x86_64-linux]
 * System dependencies
 
 * Configuration
