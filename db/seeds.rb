@@ -7,3 +7,18 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+user = User.create!(
+  name: "シードユーザー",
+  mail: "seed@example.com",
+  password: "password",
+  password_confirmation: "password"
+)
+
+5.times do |i|
+  user.plans.create!(
+    title: "予定#{i + 1}",
+    content: "これは予定#{i + 1}の内容です。",
+    start_time: Time.zone.now + i.hours,
+    end_time: Time.zone.now + (i + 1).hours
+  )
+end

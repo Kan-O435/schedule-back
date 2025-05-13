@@ -14,3 +14,16 @@
 #       methods: [:get, :post, :put, :patch, :delete, :options, :head]
 #   end
 # end
+# config/initializers/cors.rb
+Rails.application.config.middleware.insert_before 0, Rack::Cors do
+    allow do
+      origins 'http://localhost:3000'  #react側
+      
+      resource '*', 
+        headers: :any, 
+        methods: [:get, :post, :patch, :put, :delete, :options, :head],
+        credentials: true
+    end
+  end
+  
+  #本番環境はあとで設定

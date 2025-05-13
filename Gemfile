@@ -47,4 +47,8 @@ end
 
 group :development, :test do
   gem 'rspec-rails'
+  gem 'factory_bot_rails'  # データを簡単に作成するためのgem
+  gem 'faker'  # 偽のデータを生成するためのgem
 end
+
+gem 'rack-cors'
