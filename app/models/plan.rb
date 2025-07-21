@@ -1,5 +1,7 @@
 class Plan < ApplicationRecord
     belongs_to :user
+    has_many :share_plans
+    has_many :share_users, through: :share_plans, source: :user
 
     validates :title, presence: true
     validates :start_time, presence: true
