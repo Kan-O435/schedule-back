@@ -1,102 +1,114 @@
-スケジュール共有アプリ
-概要
-このアプリは、ユーザーが予定を作成し、他のユーザーと予定を共有できるスケジュール管理アプリです。
+# スケジュール共有アプリ
+
+## 概要
+
+このアプリは、ユーザーが予定を作成し、他のユーザーと予定を共有できるスケジュール管理アプリです。  
 シンプルで直感的に予定管理ができることを目指しています。
 
-主な機能
-ユーザー登録とプロフィール表示
+## 主な機能
 
-予定の作成、閲覧、編集、削除
+- ユーザー登録とプロフィール表示
+- 予定の作成、閲覧、編集、削除
+- 他のユーザーとの予定共有および共有解除
+- APIドキュメント閲覧（Swagger UI）
 
-他のユーザーとの予定共有および共有解除
+## 技術スタック
 
-APIドキュメント閲覧（Swagger UI）
+- Ruby on Rails 7.1
+- PostgreSQL（開発環境によってはSQLite）
+- RSpec（テストフレームワーク）
+- FactoryBot（テスト用データ作成）
+- Rswag（APIドキュメント生成）
 
-技術スタック
-Ruby on Rails 7.1
+## 動作環境・前提条件
 
-PostgreSQL（開発環境によってはSQLite）
+- Ruby 3.2.3
+- Bundler
+- PostgreSQL または SQLite
 
-RSpec（テストフレームワーク）
+---
 
-FactoryBot（テスト用データ作成）
+## セットアップ手順
 
-Rswag（APIドキュメント生成）
+1. リポジトリをクローンしてプロジェクトディレクトリに移動
 
-動作環境・前提条件
-Ruby 3.2.3
-
-Bundler
-
-PostgreSQL または SQLite
+```bash
+git clone https://github.com/Kan-O435/schedule-back.git
+cd schedule-back
 
 セットアップ手順
-リポジトリをクローンしてプロジェクトディレクトリに移動
+このリポジトリをクローンし、プロジェクトディレクトリに移動します。
 
 bash
 コピーする
 編集する
-git clone [https://github.com/Kan-O435/schedule-back.git]
+git clone https://github.com/Kan-O435/schedule-back.git
 cd schedule-back
-Bundlerで必要なGemをインストール
+必要なGemをインストールします。
 
 bash
 コピーする
 編集する
 bundle install
-データベースの作成・マイグレーションを実行
+データベースの作成とマイグレーションを実行します。
 
 bash
 コピーする
 編集する
 rails db:create
 rails db:migrate
-（任意）テストデータの投入
+必要であれば、初期データの投入を行います。
 
 bash
 コピーする
 編集する
 rails db:seed
-ローカルサーバーを起動
+開発用のローカルサーバーを起動します。
 
 bash
 コピーする
 編集する
 rails server
-ブラウザで http://localhost:3000 にアクセス
+ブラウザで以下のURLにアクセスします。
 
-APIエンドポイント一覧
-メソッド	パス	説明
-POST	/users	ユーザー登録
-GET	/users/:id	ユーザー情報取得
-GET	/users/:user_id/plans	ユーザーの予定一覧取得
-POST	/users/:user_id/plans	予定作成
-PUT	/users/:user_id/plans/:id	予定更新
-DELETE	/users/:user_id/plans/:id	予定削除
-POST	/share_plans	予定共有
-DELETE	/share_plans	共有解除
-GET	/api-docs	Swagger APIドキュメント
-
-テスト実行方法
-RSpecでテストを実行します。
-
-bash
+arduino
 コピーする
 編集する
+http://localhost:3000
+
+APIエンドポイント一覧
+| メソッド   | パス                          | 説明                    |
+| ------ | --------------------------- | --------------------- |
+| POST   | `/users`                    | ユーザー登録                |
+| GET    | `/users/:id`                | ユーザー情報取得              |
+| GET    | `/users/:user_id/plans`     | ユーザーの予定一覧取得           |
+| POST   | `/users/:user_id/plans`     | 予定作成                  |
+| PUT    | `/users/:user_id/plans/:id` | 予定更新                  |
+| DELETE | `/users/:user_id/plans/:id` | 予定削除                  |
+| POST   | `/share_plans`              | 他ユーザーに予定を共有           |
+| DELETE | `/share_plans`              | 予定の共有を解除              |
+| GET    | `/api-docs`                 | SwaggerによるAPIドキュメント閲覧 |
+
+テストの実行方法
+RSpecを使ってテストを実行できます。
 bundle exec rspec
-すべてのテストがパスすることを確認してください。
+エラーがないことを確認してください。
 
 認証について
-Firebase認証を利用しています（本番環境向け）。
+このアプリではFirebase認証を導入しています。
 
-テスト環境では認証をスキップする設定を行っています。
+本番環境では、GoogleのFirebaseトークンを検証してログイン処理を行っています。
+
+テスト環境では、authenticate_user! をスキップしており、認証がなくてもテストを通せるようにしています。
 
 今後の拡張予定
-予定の通知機能
+通知機能の追加（例：予定開始前のリマインダー）
 
-共有範囲（公開範囲）の詳細設定
+共有範囲の細かい設定（例：閲覧専用か編集権限ありか）
 
-UIの改善
+UIの改善（カレンダー形式での表示、スマホ最適化
 
 開発者情報
-作成者: [菅]
+作成者: 菅（Kan）
+
+GitHub: https://github.com/Kan-O435
