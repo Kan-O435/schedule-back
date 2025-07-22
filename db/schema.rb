@@ -10,7 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+
 ActiveRecord::Schema[7.1].define(version: 2025_06_27_061058) do
+=======
+ActiveRecord::Schema[7.1].define(version: 2025_05_13_101249) do
+>>>>>>> acfad9cfc518fc21e273e8aaf9469b0b7d6cc2f0
   create_table "plans", force: :cascade do |t|
     t.string "title"
     t.text "content"
@@ -21,6 +25,7 @@ ActiveRecord::Schema[7.1].define(version: 2025_06_27_061058) do
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_plans_on_user_id"
   end
+
 
   create_table "share_plans", force: :cascade do |t|
     t.integer "user_id", null: false
@@ -34,6 +39,18 @@ ActiveRecord::Schema[7.1].define(version: 2025_06_27_061058) do
 
   create_table "shares", force: :cascade do |t|
     t.string "title"
+=======
+  create_table "shares", force: :cascade do |t|
+    t.string "title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "mail", null: false
+    t.string "password_digest", null: false
+>>>>>>> acfad9cfc518fc21e273e8aaf9469b0b7d6cc2f0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
