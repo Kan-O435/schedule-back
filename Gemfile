@@ -25,6 +25,13 @@ gem "puma", ">= 5.0"
 # Windows用のタイムゾーンデータ
 gem "tzinfo-data", platforms: %i[ windows jruby ]
 
+gem 'rack-cors'
+gem 'rswag-api'
+gem 'rswag-ui'
+gem 'rswag-specs'
+gem 'pg'
+
+
 group :development, :test do
   gem "debug", platforms: %i[ mri windows ]
 end
