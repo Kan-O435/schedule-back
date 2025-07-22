@@ -97,8 +97,17 @@ GEM
     diff-lcs (1.6.1)
     drb (2.2.1)
     erubi (1.13.1)
+    factory_bot (6.5.4)
+      activesupport (>= 6.1.0)
+    factory_bot_rails (6.5.0)
+      factory_bot (~> 6.5)
+      railties (>= 6.1.0)
+    faker (3.5.2)
+      i18n (>= 1.8.11, < 2)
     globalid (1.2.1)
       activesupport (>= 6.1)
+    google-id-token (1.4.2)
+      jwt (>= 1)
     i18n (1.14.7)
       concurrent-ruby (~> 1.0)
     io-console (0.8.0)
@@ -109,6 +118,8 @@ GEM
     json-schema (5.2.1)
       addressable (~> 2.8)
       bigdecimal (~> 3.1)
+    jwt (3.1.2)
+      base64
     logger (1.7.0)
     loofah (2.24.0)
       crass (~> 1.0.2)
@@ -268,6 +279,9 @@ DEPENDENCIES
   bcrypt (~> 3.1.7)
   bootsnap (~> 1.18)
   debug
+  factory_bot_rails
+  faker
+  google-id-token
   pg
   puma (>= 5.0)
   rack-cors

@@ -7,4 +7,10 @@ Rails.application.routes.draw do
   resources :users, only: [:create, :show] do
     resources :plans, only: [:index, :show, :create, :update, :destroy]
   end
+
+  resources :share_plans, only: [:create] do
+    collection do
+      delete '/', to: 'share_plans#destroy', as: :destroy
+    end
+  end
 end
