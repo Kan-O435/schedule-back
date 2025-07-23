@@ -6,6 +6,7 @@ Rails.application.routes.draw do
 
   resources :users, only: [:create, :show] do
     resources :plans, only: [:index, :show, :create, :update, :destroy]
+    get 'shared_plans', to: 'share_plans#shared'
   end
 
   resources :share_plans, only: [:create] do

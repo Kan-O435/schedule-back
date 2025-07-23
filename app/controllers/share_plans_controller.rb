@@ -20,6 +20,18 @@ class SharePlansController < ApplicationController
     end
   end
 
+  def shared
+  user = User.find(params[:user_id])
+  shared_plan_ids = SharePlan.where(user_id: user.id).pluck(:plan_id)
+  shared_plans = Plan.includes(:user).where(id: shared_plan_ids)
+
+  render json: shared_plans.as_json(
+    include: { user: { only: [:id, :name, :email] } },
+    only: [:id, :title, :description, :start_time, :end_time]
+  )
+end
+
+
   private
 
   def share_plan_params
