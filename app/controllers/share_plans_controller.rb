@@ -4,7 +4,6 @@ class SharePlansController < ApplicationController
   def create
     share_plan = SharePlan.new(share_plan_params)
     if share_plan.save
-      # 共有元ユーザーの予定一覧にリダイレクト
       redirect_to user_plans_path(share_plan.plan.user), notice: "予定を共有しました"
     else
       redirect_to user_plans_path(share_plan.plan.user), alert: share_plan.errors.full_messages.join(", ")
