@@ -3,7 +3,7 @@ class PlansController < ApplicationController
   before_action :set_plan, only: [:show, :update, :destroy]
 
   def index
-    plans = @user.plans.order(start_time: :asc) #予定の開始時間を昇順に並べて管理
+    plans = @user.plans.order(start_time: :asc)
     render json: plans
   end
   
@@ -22,10 +22,10 @@ class PlansController < ApplicationController
   end
 
   def update
-    if @plan.update(plan_params) # 修正: plan_paramsに変更
+    if @plan.update(plan_params)
       render json: @plan, status: :ok
     else
-      render json: { errors: @plan.errors.full_messages }, status: :unprocessable_entity # 修正: @plamを@planに変更
+      render json: { errors: @plan.errors.full_messages }, status: :unprocessable_entity
     end
   end
 
@@ -39,16 +39,14 @@ class PlansController < ApplicationController
 
   private
 
-  # userを取得、ここから忘れがち
   def set_user
     @user = User.find(params[:user_id])
   end
 
   def set_plan
-    @plan = @user.plans.find(params[:id]) # 修正: plams -> plans
+    @plan = @user.plans.find(params[:id])
   end
 
-  # リクエストから送られてきたデータを許可するためのメソッド
   def plan_params
     params.require(:plan).permit(:title, :content, :start_time, :end_time)
   end
