@@ -1,12 +1,18 @@
 class PlansController < ApplicationController
+  #skip_before_action :authenticate_user!
   before_action :set_user
   before_action :set_plan, only: [:show, :update, :destroy]
 
   def index
     plans = @user.plans.order(start_time: :asc)
-    render json: plans
+    render json: { plans: plans }
   end
-  
+
+  def shared
+    shared_plans = @user.plans.where(is_shared: true).order(start_time: :asc)
+    render json: { plans: shared_plans }
+  end
+
   def create
     plan = @user.plans.build(plan_params)
 
@@ -48,6 +54,6 @@ class PlansController < ApplicationController
   end
 
   def plan_params
-    params.require(:plan).permit(:title, :content, :start_time, :end_time)
+    params.require(:plan).permit(:title, :content, :start_time, :end_time, :is_shared)
   end
 end

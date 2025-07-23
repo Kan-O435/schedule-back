@@ -1,8 +1,14 @@
 class UsersController < ApplicationController
+    #skip_before_action :authenticate_user! , only: [:index, :show]
 
   def show
     @user = User.find(params[:id])
     render json: @user.as_json(only: [:id, :name, :mail])
+  end
+
+  def index
+    @users = User.all
+    render json: @users
   end
 
   def create
