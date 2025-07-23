@@ -1,5 +1,5 @@
 class SharePlansController < ApplicationController
-  before_action :authenticate_user!
+ # skip_before_action :authenticate_user!
 
   def create
     share_plan = SharePlan.new(share_plan_params)
