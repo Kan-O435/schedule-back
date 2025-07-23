@@ -25,8 +25,18 @@ gem "puma", ">= 5.0"
 # Windows用のタイムゾーンデータ
 gem "tzinfo-data", platforms: %i[ windows jruby ]
 
+gem 'rack-cors'
+gem 'rswag-api'
+gem 'rswag-ui'
+gem 'rswag-specs'
+gem 'pg'
+gem 'google-id-token'
+
+
 group :development, :test do
   gem "debug", platforms: %i[ mri windows ]
+  gem 'factory_bot_rails'
+  gem 'faker'
 end
 
 group :development do
@@ -37,3 +47,5 @@ end
 group :development, :test do
   gem 'rspec-rails'
 end
+
+gem "bootsnap", "~> 1.18"
