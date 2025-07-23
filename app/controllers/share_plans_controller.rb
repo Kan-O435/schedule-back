@@ -1,5 +1,5 @@
 class SharePlansController < ApplicationController
-  skip_before_action :authenticate_user!, only: [:create, :destroy], if: -> { Rails.env.test? }
+  before_action :authenticate_user!
 
   def create
     share_plan = SharePlan.new(share_plan_params)

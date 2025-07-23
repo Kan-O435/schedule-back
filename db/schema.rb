@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_06_27_061058) do
+ActiveRecord::Schema[7.1].define(version: 2025_07_23_163625) do
   create_table "plans", force: :cascade do |t|
     t.string "title"
     t.text "content"
@@ -19,6 +19,7 @@ ActiveRecord::Schema[7.1].define(version: 2025_06_27_061058) do
     t.integer "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "is_shared"
     t.index ["user_id"], name: "index_plans_on_user_id"
   end
 
@@ -30,6 +31,15 @@ ActiveRecord::Schema[7.1].define(version: 2025_06_27_061058) do
     t.index ["plan_id"], name: "index_share_plans_on_plan_id"
     t.index ["user_id", "plan_id"], name: "index_share_plans_on_user_id_and_plan_id", unique: true
     t.index ["user_id"], name: "index_share_plans_on_user_id"
+  end
+
+  create_table "shared_plans", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "plan_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["plan_id"], name: "index_shared_plans_on_plan_id"
+    t.index ["user_id"], name: "index_shared_plans_on_user_id"
   end
 
   create_table "shares", force: :cascade do |t|
@@ -51,4 +61,6 @@ ActiveRecord::Schema[7.1].define(version: 2025_06_27_061058) do
   add_foreign_key "plans", "users"
   add_foreign_key "share_plans", "plans"
   add_foreign_key "share_plans", "users"
+  add_foreign_key "shared_plans", "plans"
+  add_foreign_key "shared_plans", "users"
 end
