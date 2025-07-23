@@ -11,7 +11,7 @@ class FirebaseAuth
 
   def self.verify(token)
     app
-    auth_client = Firebase::Admin::Sdk::Auth.client(app) # トークン検証用
+    auth_client = Firebase::Admin::Sdk::Auth.client(app)
     auth_client.verify_id_token(token)
   rescue => e
     Rails.logger.warn "Firebase token invalid: #{e}"
