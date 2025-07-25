@@ -12,7 +12,7 @@
 - 他のユーザーとの予定共有および共有解除
 - APIドキュメント閲覧（Swagger UI）
 
-- ![Uploading Videotogif (1).gif…]()
+![Uploading Videotogif (1).gif…]()
 
 
 ## 技術スタック
