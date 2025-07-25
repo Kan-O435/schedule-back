@@ -12,7 +12,8 @@
 - 他のユーザーとの予定共有および共有解除
 - APIドキュメント閲覧（Swagger UI）
 
-![Uploading Videotogif (1).gif…]()
+![Videotogif (1)](https://github.com/user-attachments/assets/e6d42502-084c-480f-9139-be5cfd70018c)
+
 
 
 ## 技術スタック
