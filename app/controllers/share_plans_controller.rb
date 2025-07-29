@@ -2,11 +2,28 @@ class SharePlansController < ApplicationController
  # skip_before_action :authenticate_user!
 
   def create
-    share_plan = SharePlan.new(share_plan_params)
-    if share_plan.save
-      redirect_to user_plans_path(share_plan.plan.user), notice: "予定を共有しました"
-    else
-      redirect_to user_plans_path(share_plan.plan.user), alert: share_plan.errors.full_messages.join(", ")
+    puts "=== SharePlans#create Debug ==="
+    puts "Params: #{share_plan_params.inspect}"
+    puts "Looking for user with UID: #{share_plan_params[:user_id]}"
+    
+    user = User.find_by!(uid: share_plan_params[:user_id])
+    puts "Found user: #{user.inspect}"
+    puts "User ID: #{user&.id}"
+    puts "============================="
+    
+    share_plan = SharePlan.new(
+      user_id: user.id,
+      plan_id: share_plan_params[:plan_id]
+    )
+    
+    begin
+      if share_plan.save
+        render json: { message: "予定を共有しました" }, status: :created
+      else
+        render json: { errors: share_plan.errors.full_messages }, status: :unprocessable_entity
+      end
+    rescue ActiveRecord::RecordNotUnique
+      render json: { message: "このユーザーは既に招待済みです" }, status: :conflict
     end
   end
 
